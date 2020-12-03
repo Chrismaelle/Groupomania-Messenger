@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "29pinpin",
+    "database": "groupomania_messenger",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "29pinpin",
+    "database": "groupomaniatest",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "29pinpin",
+    "database": "groupomaniaprod",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
