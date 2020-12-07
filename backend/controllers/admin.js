@@ -20,8 +20,6 @@ exports.getAllUsersAdmin = (req, res, next) => {
 // GET 
 exports.getOneUserAdmin = (req, res, next) => {
     const Users = db.Users;
-    console.log('titi')
-
     Users.findOne({ 
         attributes: [ 'id', 'firstName', 'lastName', 'email', 'photo', 'permission' ],
         where: { id: req.params.id },

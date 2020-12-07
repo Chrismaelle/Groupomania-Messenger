@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const { sequelize } = require('../models/index.js');
 
 // CONSTANTES
-const db = require('../models/index.js');
+const db = require('../models');
 
 
 // POST
@@ -32,12 +32,11 @@ exports.createPost = (req, res, next) => {
 
     if (!regex.test(Posts.content)) {
         return res.status(500).json({ error: 'Des caractères invalides se trouvent dans vos champs.' });
-    } else {
-        console.log('titi');
+    } else { 
         const newPost = Posts.create({
             user_id: userId,
             content: req.body.content,
-            attachments: req.body.content && req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}`: null,
+            attachments: req.body.attachments,
             comments: req.body.comments
         })
         .then(newPost => res.status(201).json( newPost ))
@@ -99,8 +98,8 @@ exports.modifyPost = (req, res, next) => {
         comments: req.body.comments},
         {where: { id: req.params.id }
     })
-    .then(newPost => res.status(200).json( {message: 'Post mis à jour!'}, newPost ))
-    .catch(error => json.status(500).json( error ))
+    .then(() => res.status(200).json({ message: 'Posts mis à jour !'}))
+    .catch(error => res.status(500).json( {error }))
 };
 
 
@@ -116,14 +115,14 @@ exports.deletePost = (req, res, next) => {
     }).then(post => {
         if (post.attachments !== null) {
             const filename = post.attachments.split('/images/')[1];
-            fs.unlink(`images/${filename}`, () => { // Je supprimer l'image en lien grâce à la méthode unlink du package fs
-            Posts.destroy({ where: {id: req.params.id} }) // On supprime l'objet
-                .then(() => res.status(200).json({ message: 'Sauce supprimée !'}))
+            fs.unlink(`images/${filename}`, () => { 
+            Posts.destroy({ where: {id: req.params.id} })
+                .then(() => res.status(200).json({ message: 'Posts supprimé !'}))
                 .catch(error => res.status(400).json({ error }));
             });
         }
-        Posts.destroy({ where: {id: req.params.id} }) // On supprime l'objet
-            .then(() => res.status(200).json({ message: 'Sauce supprimée !'}))
+        Posts.destroy({ where: {id: req.params.id} }) 
+            .then(() => res.status(200).json({ message: 'Posts supprimée !'}))
             .catch(error => res.status(400).json({ error }));
     })
     .catch(error => res.status(400).json({ error: "Pas de publication correspondante.", error: error }))
