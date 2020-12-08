@@ -36,8 +36,7 @@ exports.createPost = (req, res, next) => {
         const newPost = Posts.create({
             user_id: userId,
             content: req.body.content,
-            attachments: req.body.attachments,
-            comments: req.body.comments
+            attachments: req.body.content && req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}`: null,
         })
         .then(newPost => res.status(201).json( newPost ))
         .catch(error => res.status(400).json({ error }));

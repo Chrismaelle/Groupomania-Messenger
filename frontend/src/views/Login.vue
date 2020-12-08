@@ -14,56 +14,53 @@
                 <p>Rejoignez la conversation.</p>
             </div>
         </div>
-        <div id="signup">
+    <div id="login">
+        <div >
             <div >
-                <div>
-                    <div id="title">
-                        <h3>Inscription</h3>
-                    </div>
-                    <div id="lien">
-                        <a href="#/login">Connexion</a>
-                    </div>
+                <div id="title">
+                    <h3>Connexion</h3>
                 </div>
-            </div>
-            <div>
-                <div class="register">
-                    <input type="text" id="firstName" placeholder="First-name" aria-label="Prénom de l'utilisateur" v-model="dataUser.firstName"/>
-                    <input type="text" id="lastName" placeholder="Last-name" aria-label="Nom de famille de l'utilisateur" v-model="dataUser.lastName"/>
-                    <input type="email" id="email" placeholder="name@exemple.com" v-model="dataUser.email"/>
-                    <input type="password" id="password-input" placeholder="Votre mot de passe" aria-label="Mot de passe de l'utilisateur" v-model="dataUser.password" 
-                    v-on:keyup.enter="submitSignup"/>
-                    <button type="submit" aria-label="Inscription de l'utilisateur" @click.prevent="submitSignup" class="btn">S'inscrire</button>
+                <div id="lien">
+                    <a href="#/signup">Inscription</a>
                 </div>
             </div>
         </div>
+        <div >
+            <div id="connect">
+                <input type="email" id="email" placeholder="name@example.com" aria-label="email d'un utilisateur" v-model="dataUser.email"/>
+                <input type="password" id="password-input" placeholder="Votre mot de passe" aria-label="Mot de passe d'un utilisateur" v-model="dataUser.password" 
+                v-on:keyup.enter="submitLogin"/>
+                <button type="submit" class="btn" aria-label="Connexion d'un utilisateur" @click.prevent="submitLogin" v-on:keyup.enter="submitLogin">Se connecter</button>
+            </div>
+        </div>
     </div>
+</div>
 </template>
 
 
 <script>
 import axios from "axios";
 export default {
-    name: 'signup',  
+    name: 'login',
     data() {
         return {
             dataUser: {
-                firstName: '',
-                lastName: '',
                 email: '',
                 password: ''
             }
         };
     },
     methods: {
-        submitSignup() {
-            if (this.firstName !== null || this.lastName !== null || this.email !== null || this.password !== null) {
+        submitLogin() {
+            if (this.email !== null || this.password !== null) {
                 axios
-                    .post("http://localhost:3000/api/users/signup",
+                    .post("http://localhost:3000/api/users/login",
                         this.dataUser
                     )
                     .then(response => {
-                        console.log(response);
-                        this.$router.push("/login");
+                        localStorage.setItem("token", response.data.token);
+                        this.$cookies.set("token", response.data.token, '1d');
+                        this.$router.push("/");
                     })
                     .catch(error => {
                         console.log(error.response)
@@ -71,47 +68,21 @@ export default {
             } else {
                 alert("L'un des champs n'est pas renseigné !");
             }
-        },
-    },
-};
+        }
+    },   
+}
 </script>
 
 <style>
     body, * {
         margin: 0;
         padding: 0;
+        font-family: 'Texturina', serif;
     }
     #conteneur {
         display: flex;
         justify-content: center;
         margin: 100px;
-    }
-    #signup {
-      text-align: center;
-      border: solid 0.1rem;
-      margin-left: 80px;
-    }
-    #title h3 {
-        padding: 10px 0;
-        font-size: 3rem;
-    }
-    #lien a {
-        text-decoration: none;
-        color: black;
-        font-size: 1rem;
-    }
-    #lien a:hover{
-        color: #FD2D01;
-    }
-    .register{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 50px 50px 0 50px;
-    }
-    .register input {
-        margin-bottom: 30px;
-        font-size: 25px;
     }
     #accueil {
         background-image: url(../assets/images/icon.png);
@@ -133,9 +104,37 @@ export default {
     #accueil div {
         padding: 10px;
     }
+    #title h3 {
+        padding: 40px 0;
+        font-size: 3rem;
+    }
+    #lien a {
+        text-decoration: none;
+        color: black;
+        font-size: 1rem;
+    }
+    #lien a:hover{
+        color: #FD2D01;
+    }
+    #login {
+      text-align: center;
+      border: solid 0.1rem;
+      margin-left: 80px;
+      padding-top: 50px;
+    }
+    #connect{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 50px 50px 0 50px;
+    }
+    #connect input {
+        margin-bottom: 30px;
+        font-size: 25px;
+    }
     .btn {
         width: 50%;
-        padding: 5px;
+        padding: 10px;
         border-radius: 15px;
         font-size: 1.2rem;
         margin-top: 50px;

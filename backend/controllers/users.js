@@ -37,7 +37,7 @@ exports.signup = (req, res, next) => {
             email: email,
             password: hash,
             permission: false,
-            photo: "http://localhost:3000/images/userProfil.jpg1604999623448.jpg"
+            photo: "http://localhost:3000/images/profile_sophie.png"
         });
 
         user.save() 
@@ -61,7 +61,6 @@ exports.login = (req, res, next) => {
     }
   }) 
     .then(user => {
-      console.log(user);
       if (!user) { 
         return res.status(404).json({ error: 'Utilisateur non trouvé !' });
       }
@@ -97,7 +96,7 @@ exports.delete = (req, res, next) => {
       id: req.params.id
     }
   }).then(user => {
-    if (user.photo !== 'http://localhost:3000/images/userProfil.jpg1604999623448.jpg') {
+    if (user.photo !== 'http://localhost:3000/images/profile_sophie.png') {
     const filename = user.photo.split('/images/')[1];
     fs.unlink(`images/${filename}`, () => {
       Users.destroy({ where: { id: req.params.id }})
