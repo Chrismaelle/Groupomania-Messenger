@@ -21,7 +21,7 @@
                         <h3>Inscription</h3>
                     </div>
                     <div id="lien">
-                        <a href="#/login">Connexion</a>
+                        <router-link to="/login">Connexion</router-link>
                     </div>
                 </div>
             </div>
@@ -80,6 +80,7 @@ export default {
     body, * {
         margin: 0;
         padding: 0;
+        font-family: 'Texturina', serif;
     }
     #conteneur {
         display: flex;

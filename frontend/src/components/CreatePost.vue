@@ -1,42 +1,29 @@
 <template>
-    <div class="new-post c-6 cm-12">
-        <div class="identity">
-        <img id="user-photo" :src="user.photo">
-        <div>
-            <p id="user-name">{{ user.firstName }} {{ user.lastName }}</p>
-        </div>
-        </div>
-        <form @submit.prevent="createPost">
-        <div class="post-textarea">
-            <textarea 
-                id="post-area" 
-                class="form-control"
-                aria-label="Contenu texte d'un post" 
-                v-model="postContent.content" 
-                placeholder="Écrire votre post ici"
-            ></textarea>
-        </div>
-        <div class="new-post-buttons">
-            <label class="c-6 cm-12 file-select">
-                <div class="select-button" role="button" aria-label="Téléchargement d'un fichier">
-                    <span v-if="postContent.attachments">Fichier séléctionné : {{postContent.attachments.name}}</span>
-                    <span v-else class="add-file"><span class="mdi mdi-image"></span>Ajouter un fichier</span>
-                </div>
-                <input 
-                    type="file"
-                    id="photo"
-                    class="upload-input"
-                    ref="photo" 
-                    v-on:change="handleFileUpload()"
-                />
-            </label>
-            <div class="c-6 cm-12">
-                <input type="submit" id="btn-new-post" class="btn-lg btn-l" value="Publier" aria-label="Publication d'un post" v-on:click="loadAllPosts()"/>
+    <div id="createPost">
+        <div id="user">
+            <img :src="user.photo">
+            <div class="nom">
+                <p>{{ user.firstName }} {{ user.lastName }}</p>
             </div>
         </div>
+        <form @submit.prevent="createPost" id="form">
+            <div>
+                <textarea aria-label="Contenu texte d'un post" v-model="postContent.content" placeholder="Que voulez-vous dire ?" class="text"></textarea>
+            </div>
+            <div>
+                <label>
+                    <div role="button" aria-label="Téléchargement d'un fichier">
+                        <span v-if="postContent.attachments">Fichier séléctionné : {{postContent.attachments.name}}</span>
+                        <span v-else>Ajouter un fichier</span>
+                    </div>
+                    <input class="upload" type="file" ref="photo" v-on:change="handleFileUpload()"/>
+                </label>
+                <div>
+                    <input class="publier" type="submit" value="Publier" aria-label="Publication d'un post" v-on:click="loadAllPosts()"/>
+                </div>
+            </div>
         </form>
     </div>
-
 </template>
 
 <script>
@@ -71,14 +58,12 @@ export default {
         })
     },
     methods: {
-        
         createPost() {
             if (this.postContent.content !== null) {
                 if (this.postContent.attachments !== null) {
                     let formData = new FormData();
                     formData.append('content', this.postContent.content);
                     formData.append('attachments', this.postContent.attachments, this.postContent.attachments.name);
-                    console.log('content with attachments')
                     axios
                         .post('http://localhost:3000/api/posts', 
                             formData , {
@@ -96,7 +81,6 @@ export default {
                 } else {
                     let formData = new FormData();
                     formData.append('content', this.postContent.content);
-                    console.log('content')
                     axios
                         .post('http://localhost:3000/api/posts', 
                             formData , {
@@ -128,3 +112,51 @@ export default {
     },
 }
 </script>
+
+<style>
+    #user {
+        display: flex;
+        justify-content: center;
+        margin: 0 0 20px 0;
+        }
+    #user img {
+        max-width: 60px;
+        max-height: 60px;
+        width: 100%;
+        height: 100%; 
+        border-radius: 50px;  
+    }
+    .nom {
+        line-height: 60px;
+        padding: 0 15px;
+        font-size: 2rem;
+    }
+    #createPost {
+        text-align: center;
+        padding: 20px 0;
+        border: solid 0.5px;
+        border-radius: 10px;
+        width: 600px;
+        height: 200px;
+        margin-left: 700px;
+    }
+    .text {
+        width: 220px;
+        height: 30px;
+        padding-top: 3px;
+        text-align: center;
+        border-radius: 10px;
+        margin: 25px 15px 0 50px;
+    }
+    #form {
+        display: flex;
+        justify-content: center;
+    }
+    .upload {
+        margin-bottom: 20px;
+        padding: 5px;
+    }
+    .publier {
+        padding: 0 5px 3px 5px;
+    }
+</style>

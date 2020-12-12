@@ -25,7 +25,7 @@ export default {
         },
         commentUserPhoto: {
             type: String,
-            default: "http://localhost:3000/images/profile_sophie.png"
+            default: "http://localhost:3000/images/avatar.png"
         },
         commentContent: {
             type: String,
@@ -34,3 +34,10 @@ export default {
     }
 }
 </script>
+
+<style>
+    .user-photo-comment {
+        width: 60px;
+        height: 60px;
+    }
+</style>

@@ -21,7 +21,7 @@
                     <h3>Connexion</h3>
                 </div>
                 <div id="lien">
-                    <a href="#/signup">Inscription</a>
+                    <router-link to="/signup">Inscription</router-link>
                 </div>
             </div>
         </div>

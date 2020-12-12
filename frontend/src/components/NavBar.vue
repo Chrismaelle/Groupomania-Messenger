@@ -3,15 +3,15 @@
         <div>
             <router-link to="/"><img src="../assets/images/logo-groupomania.png" id="logo-groupomania"></router-link>
         </div>
-        <div>
+        <div id="nav-info">
             <div v-if="$route.path==='/login' || $route.path==='/signup' ? false : true" v-bind="account">
-                <div role="link" aria-label="Accès aux informations utilisateurs">
+                <div role="link" aria-label="Accès aux informations utilisateurs" class="navbar-user">
                     <img v-bind:src="userPhoto">
                     <div>
-                        <ul>
-                            <li><router-link to="/account">Informations</router-link></li>
-                            <li v-if="admin == 1"><router-link to="/allusersadmin">Tous les utilisateurs</router-link></li>
-                            <li><a href="#" class="logOut" @click="logOut()">Se déconnecter</a></li>
+                        <ul id="list">
+                            <li><router-link to="/account" class="menu">Informations</router-link></li>
+                            <li v-if="admin == 1"><router-link to="/allusersadmin" class="menu">Tous les utilisateurs</router-link></li>
+                            <li><a href="#" class="logOut menu" @click="logOut()">Se déconnecter</a></li>
                       </ul>
                   </div>
                 </div>
@@ -99,6 +99,7 @@ export default {
     body, * {
         margin: 0;
         padding: 0;
+        font-family: 'Texturina', serif;
     }
     #nav {
         text-align: center;
@@ -108,6 +109,36 @@ export default {
         max-height: 250px;
         width: 100%;
         height: 100%;
+        margin-left: 50px;
     }
-
+    .navbar-user img {
+        max-width: 40px;
+        max-height: 40px;
+        height: 100%;
+        width: 100%;
+        border-radius: 50px;
+        box-shadow: 2px 2px 2px #FDD3D3;
+        margin: 50px 70px 0 0;
+    }
+    .navbar-user {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        background-image: url(../assets/images/fond.jpg);
+        background-repeat: no-repeat;
+        height: 300px;
+    }
+    .menu {
+        text-decoration: none;
+        color: white;
+        margin-right: 35px;
+    }
+    #list {
+        display: flex;
+        flex-direction: column;
+        line-height: 50px;
+    }
+    #list li {
+        list-style: none;
+    }
 </style>

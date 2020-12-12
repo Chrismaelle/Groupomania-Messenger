@@ -1,17 +1,17 @@
 <template>
-    <div class="post c-6 cm-12">
-        <div class="top-post">
-            <div class="c-8 cs-10 user-id">
-                <img id="user-photo" :src="userPhoto">
-                <p class="user-name"> {{ firstName }} {{ lastName }} </p>
+    <div id="post">
+        <div>
+            <div class="user">
+                <img :src="userPhoto">
+                <h1> {{ firstName }} {{ lastName }} </h1>
             </div>
-            <div class="c-4 cs-2">
-                <p class="post-date">{{ createdAt | moment("ddd, hA") }}</p>
+            <div class="date">
+                <p>{{ createdAt | moment("ddd, hA") }}</p>
             </div>
         </div>
         <div class="content">
-            <p class="message-post"> {{ content }}</p>
-            <img :src="postPhoto" class="media-post">
+            <p> {{ content }}</p>
+            <img :src="postPhoto">
         </div>
         <!-- Dernier com -->
         <slot name="Comments"></slot>
@@ -63,3 +63,49 @@ export default {
     },
 }
 </script>
+
+<style>
+    #post {
+        margin-top: 50px;
+        border: solid 1px;
+        border-radius: 10px;
+        width: 600px;
+        margin-left: 700px;
+    }
+    .user {
+        display: flex;
+        padding-top: 20px;
+    }
+    .user img {
+        border-radius: 50px;
+        max-width: 60px;
+        max-height: 60px;
+        height: 100%;
+        width: 100%;
+        margin-left: 10px;
+    }
+    .user h1 {
+        padding: 10px 15px 0 15px;
+        font-size: 1.5rem;
+    }
+    .date {
+        text-align: end;
+        margin-right: 10px;
+    }
+    .content {
+        margin-top: 30px;
+        text-align: center;
+    }
+    .content p {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+    .content img {
+        box-shadow: 5px 5px 5px rgb(212, 212, 212);
+        max-width: 500px;
+        max-height: 500px;
+        width: 100%;
+        height: 100%;
+    }
+
+</style>

@@ -37,7 +37,7 @@ exports.signup = (req, res, next) => {
             email: email,
             password: hash,
             permission: false,
-            photo: "http://localhost:3000/images/profile_sophie.png"
+            photo: "http://localhost:3000/images/avatar.png"
         });
 
         user.save() 
@@ -96,7 +96,7 @@ exports.delete = (req, res, next) => {
       id: req.params.id
     }
   }).then(user => {
-    if (user.photo !== 'http://localhost:3000/images/profile_sophie.png') {
+    if (user.photo !== 'http://localhost:3000/images/avatar.png') {
     const filename = user.photo.split('/images/')[1];
     fs.unlink(`images/${filename}`, () => {
       Users.destroy({ where: { id: req.params.id }})

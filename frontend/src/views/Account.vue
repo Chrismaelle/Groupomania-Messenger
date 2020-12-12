@@ -1,67 +1,28 @@
 <template>
-  <div class="account">
-    <div class="user">
-      <img id="user-photo" v-bind:src="dataUser.photo">
-    </div>
-    <div class="fields c-12">
-                <input 
-                    type="text" 
-                    class="input-l" 
-                    id="firstName" 
-                    placeholder="First-name"
-                    aria-label="Prénom de l'utilisateur"
-                    v-model="dataUser.firstName"
-                />
-                <input 
-                    type="text" 
-                    class="input-l" 
-                    id="lastName" 
-                    placeholder="Last-name"
-                    aria-label="Nom de famille de l'utilisateur"
-                    v-model="dataUser.lastName"
-                />
-                <input 
-                    type="email" 
-                    class="input-l" 
-                    id="email"
-                    aria-label="Email de l'utilisateur"
-                    placeholder="name@example.com"
-                    v-model="dataUser.email"
-                />
-
-                <label class="file-select c-12">
-                    <div class="select-button" role="button" aria-label="Téléchargement d'un fichier">
-                        <span v-if="newUserData.photo">Fichier séléctionné : {{newUserData.photo.name}}</span>
-                        <span v-else class="add-file"><span class="mdi mdi-image"></span>Ajouter un fichier</span>
-                    </div>
-                    <input 
-                        type="file"
-                        id="photo"
-                        class="upload-input"
-                        ref="photo" 
-                        v-on:change="handleFileUpload()"
-                    />
-                </label>
-
-                <div class="buttons">
-                  <div class="c-12">
-                    <button 
-                      type="submit" 
-                      class="btn btn-primary mb-2 btn-update"
-                      aria-label="Modifier les informations utilisateur"
-                      @click.prevent="updateUserInformations"
-                    >Mettre à jour les informations</button>
-                  </div>
-                  <div class="c-12">
-                    <button 
-                      type="submit" 
-                      class="btn btn-primary mb-2 btn-delete"
-                      aria-label="Supprimer l'utilisateur"
-                      @click.prevent="deleteUser"
-                    >Supprimer le compte</button>
-                  </div>
-                </div>
-            </div>
+  <div id="profile">
+      <div>
+         <img v-bind:src="dataUser.photo">
+      </div>
+      <div>
+          <input class="coordonees" type="text" placeholder="First-name" aria-label="Prénom de l'utilisateur" v-model="dataUser.firstName"/>
+          <input class="coordonees" type="text" placeholder="Last-name" aria-label="Nom de famille de l'utilisateur" v-model="dataUser.lastName"/>
+          <input class="coordonees" type="email" aria-label="Email de l'utilisateur" placeholder="name@example.com" v-model="dataUser.email"/>
+          <label id="img-profile">
+              <div role="button" aria-label="Téléchargement d'un fichier">
+                  <span v-if="newUserData.photo">Fichier séléctionné : {{newUserData.photo.name}}</span>
+                  <span class="ajout" v-else >Ajouter un fichier </span>
+              </div>
+              <input class="fichier" type="file" ref="photo" v-on:change="handleFileUpload()"/>
+          </label>
+          <div id="btn-profile">
+              <div>
+                  <button class="maj" type="submit" aria-label="Modifier les informations utilisateur" @click.prevent="updateUserInformations">Mettre à jour les informations</button>
+              </div>
+              <div>
+                  <button class="delete" type="submit" aria-label="Supprimer l'utilisateur" @click.prevent="deleteUser">Supprimer le compte</button>
+              </div>
+          </div>
+      </div>
   </div>
 </template>
 
@@ -187,3 +148,52 @@ export default {
     },
 };
 </script>
+
+<style>
+    #profile {
+        text-align: center;
+    }
+    #profile div img {
+        max-width: 150px;
+        max-height: 150px;
+        width: 100%;
+        height: 100%; 
+        border-radius: 150px;
+        margin-bottom: 30px;
+    }
+    .coordonees {
+        margin: 0 30px 30px 0;
+        text-align: center;
+        font-size: 1.3rem;
+        padding-bottom: 3px;
+        border-radius: 7px;
+        border: dashed 1px;
+    }
+    #img-profile {
+        display: flex;
+        justify-content: center;
+    }
+    .ajout {
+        font-size: 1.2rem;
+        padding-right: 20px;
+    }
+    .fichier {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+    }
+    #btn-profile {
+      display: flex;
+      justify-content: center;
+    }
+    .maj {
+      margin: 0 20px 0 0;
+      padding: 0 3px 5px 3px;
+      border-radius: 7px;
+      border: solid 1px;
+    }
+    .delete {
+      padding: 0 3px 5px 3px;
+      border-radius: 7px;
+      border: solid 1px;
+    }
+</style>

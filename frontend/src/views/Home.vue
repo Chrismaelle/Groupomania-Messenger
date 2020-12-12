@@ -1,50 +1,36 @@
 <template>
-    <div class="forum">
-        <CreatePost 
-            v-on:load-all-posts="onSubmit()"
-        />
-        <div id="post-zone">
-            <Post
-                v-for="post in allPosts"
-                :firstName="post.User.firstName"
-                :lastName="post.User.lastName"
-                :userPhoto="post.User.photo"
-                :createdAt="post.createdAt"
-                :content="post.content"
-                :postPhoto="post.attachments"
-                :key="post.id"
-            >
+    <div id="posts-box">
+        <CreatePost v-on:load-all-posts="onSubmit()"/>
+        <div>
+            <Post v-for="post in allPosts" :firstName="post.User.firstName" :lastName="post.User.lastName" :userPhoto="post.User.photo"
+                :createdAt="post.createdAt" :content="post.content" :postPhoto="post.attachments" :key="post.id">
             <template v-slot:Comments v-if="post.Comments !== null">
-                <div class="last-comments">
-                    <!-- <p class="number-comments"><span id="comments-number">1</span> commentaire</p> -->
-                    <div class="comment-bloc"
-                        v-for="comment in post.Comments"
-                        v-bind:key="comment.id">
-                        <img class="user-photo-comment" :src="comment.User.photo">
-                        <div class="comment-area">
-                            <p class="user-name">{{ comment.User.firstName }} {{ comment.User.lastName }}</p>
-                            <p>{{ comment.content }}</p>
+                <div class="delete-post" v-on:click="deletePost(post.id)" v-if="post.user_id == user.id || user.permission == 1">
+                    <i class="fas fa-trash-restore"></i>
+                </div>
+                <div id="last-comment">
+                    <div class="last-comment" v-for="comment in post.Comments" v-bind:key="comment.id">
+                        <img class="photo-user-comment" :src="comment.User.photo">
+                        <div>
+                            <p class="name">{{ comment.User.firstName }} {{ comment.User.lastName }}</p>
+                            <p class="comment-content">{{ comment.content }}</p>
+                        <div class="delete" v-on:click="deleteComment(post.id, comment.id, user.id, comment.user_id)" v-if="comment.user_id == user.id || user.permission == 1">
+                        <i class="fas fa-trash-alt"></i>
                         </div>
-                        <div v-on:click="deleteComment(post.id, comment.id)" id="deleteIcon" class="delete-comment" v-if="comment.user_id == user.id || user.permission == 1"><span class="mdi mdi-delete-outline" role="button" aria-label="Suppression d'un commentaire"></span></div>
+                        </div>
                     </div>
                 </div>
             </template>
             <template v-slot:lastCommentZone>
-                <div class="commentZone">
-                    <form>
-                        <div class="comment-bloc">
-                            <img class="user-photo" :src="user.photo">
-                            <textarea 
-                                id="comment-area" 
-                                class="form-control"
-                                v-model="newComment.content"
-                                aria-label="Zone d'un commentaire" 
-                                placeholder="Écrire votre commentaire ici"
-                            ></textarea>
+                <div>
+                    <form class="comment">
+                        <div class="comment-zone">
+                            <img :src="user.photo" class="photo-user-comment">
+                            <textarea v-model="newComment.content" aria-label="Zone d'un commentaire" placeholder="Écrire votre commentaire ici" class="text-comment">
+                            </textarea>
                         </div>
-                        <div class="bottom-post">
-                            <button v-on:click="submitComment(post.id)" id="comment-submit" type="submit" class="btn-med" aria-label="Publication d'un commentaire">Publier</button>
-                            <div v-on:click="deletePost(post.id)" id="deleteIcon" v-if="post.user_id == user.id || user.permission == 1"><span class="mdi mdi-delete-outline" role="button" aria-label="Suppression d'un post"></span></div>
+                        <div class="btn-comments">
+                            <button v-on:click="submitComment(post.id)" type="submit" aria-label="Publication d'un commentaire" class="btn-post">Publier</button>
                         </div>
                     </form>
                 </div>
@@ -55,10 +41,10 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import CreatePost from '@/components/CreatePost.vue'
 import Post from '@/components/Post.vue'
 import axios from 'axios'
+
 export default {
     name: 'Home',
     components: {
@@ -176,7 +162,8 @@ export default {
                 })
                 .catch(error => console.log(error))
         },
-        deleteComment(postId, commentId) {
+        deleteComment(postId, commentId, user_id1, user_id2) {
+            console.log(user_id1, user_id2)
             this.$confirm(
                 {
                     message: `Supprimer ce commentaire ?`,
@@ -205,3 +192,63 @@ export default {
     }
 }
 </script>
+
+<style>
+    .comment-zone {
+        text-align: center;
+        display: flex;
+        align-content: center;
+        align-items: center;
+    }
+    .photo-user-comment {
+        max-height: 30px;
+        max-width: 30px;
+        width: 100%;
+        height: 100%;
+        border-radius: 30px;
+        margin: 5px 15px 0 15px;
+    }
+    .text-comment {
+        width: 400px;
+        height: 25px;
+        padding-top: 3px;
+        text-align: center;
+        border-radius: 10px;
+        margin: 0 0 0 10px;
+    }
+    .name {
+        font-size: 1.5rem;
+    }
+    .comment-content {
+        text-align: center;
+        margin-top: 15px;
+        width: 450px;
+    }
+    .btn-post {
+        padding: 3px 10px;
+    }
+    .comment {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin: 30px 0;
+    }
+    .delete-post {
+        text-align: end;
+        padding-right: 10px;
+        font-size: 1.5rem;
+    }
+    .delete {
+        text-align: end;
+        padding: 0 5px 5px 0;
+    }
+    .last-comment  {
+        display: flex;
+
+    }
+    #last-comment {
+        border: dashed 1px;
+        width: 90%;
+        margin: 0 0 20px 28px;
+    }
+</style>
