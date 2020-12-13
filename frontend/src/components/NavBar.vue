@@ -1,6 +1,6 @@
 <template>
     <div id="nav">
-        <div>
+        <div class="logo">
             <router-link to="/"><img src="../assets/images/logo-groupomania.png" id="logo-groupomania"></router-link>
         </div>
         <div id="nav-info">
@@ -105,8 +105,8 @@ export default {
         text-align: center;
     }
     #logo-groupomania {
-        max-width: 400px;
-        max-height: 250px;
+        max-width: 350px;
+        max-height: 200px;
         width: 100%;
         height: 100%;
         margin-left: 50px;
@@ -140,5 +140,13 @@ export default {
     }
     #list li {
         list-style: none;
+    }
+    .logo {
+        background-color: white;
+    } 
+    @media screen and (max-width: 568px) {
+        #logo-groupomania {
+            margin: 0px;
+        }
     }
 </style>

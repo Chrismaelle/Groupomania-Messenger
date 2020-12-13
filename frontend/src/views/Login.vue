@@ -118,7 +118,6 @@ export default {
     }
     #login {
       text-align: center;
-      border: solid 0.1rem;
       margin-left: 80px;
       padding-top: 50px;
     }
@@ -143,5 +142,48 @@ export default {
     .btn:hover {
         background-image: linear-gradient(to top left,rgba(0, 0, 0, .2),rgba(0, 0, 0, .2) 30%,rgba(0, 0, 0, 0));
         background-color: #FD2D01;
+    }
+     @media screen and (max-width: 568px){
+        #conteneur {
+            display: flex;
+            flex-direction: column;
+            margin: 10px 0 0 0;
+            width: 100%;
+        }
+        #accueil {
+            padding: 0;
+            align-items: center;
+            background-size: 160px;
+        }
+        #accueil div p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        #accueil div i {
+            padding: 0 0 0 10px;
+            font-size: 25px;
+        }
+        #accueil div {
+            padding: 0;
+            width: 100%;
+        }
+        #login {
+            padding: 0;
+            margin: 0;
+        }
+        #connect {
+            padding: 25px 0 0 0;
+        }
+        #connect input {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        .btn {
+            margin-top: 0;
+        }
+        #title h3 {
+            font-size: 2rem;
+            padding: 40px 0 15px 0;
+        }
     }
 </style>

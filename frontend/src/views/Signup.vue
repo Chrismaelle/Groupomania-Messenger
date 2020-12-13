@@ -27,8 +27,8 @@
             </div>
             <div>
                 <div class="register">
-                    <input type="text" id="firstName" placeholder="First-name" aria-label="Prénom de l'utilisateur" v-model="dataUser.firstName"/>
-                    <input type="text" id="lastName" placeholder="Last-name" aria-label="Nom de famille de l'utilisateur" v-model="dataUser.lastName"/>
+                    <input type="text" id="firstName" placeholder="Prénom" aria-label="Prénom de l'utilisateur" v-model="dataUser.firstName"/>
+                    <input type="text" id="lastName" placeholder="Nom" aria-label="Nom de famille de l'utilisateur" v-model="dataUser.lastName"/>
                     <input type="email" id="email" placeholder="name@exemple.com" v-model="dataUser.email"/>
                     <input type="password" id="password-input" placeholder="Votre mot de passe" aria-label="Mot de passe de l'utilisateur" v-model="dataUser.password" 
                     v-on:keyup.enter="submitSignup"/>
@@ -89,7 +89,6 @@ export default {
     }
     #signup {
       text-align: center;
-      border: solid 0.1rem;
       margin-left: 80px;
     }
     #title h3 {
@@ -145,5 +144,50 @@ export default {
     .btn:hover {
         background-image: linear-gradient(to top left,rgba(0, 0, 0, .2),rgba(0, 0, 0, .2) 30%,rgba(0, 0, 0, 0));
         background-color: #FD2D01;
+    }
+    @media screen and (max-width: 568px){
+        #conteneur {
+            display: flex;
+            flex-direction: column;
+            margin: 10px 0 0 0;
+            width: 100%;
+        }
+        #accueil {
+            padding: 0;
+            align-items: center;
+            background-size: 160px;
+        }
+        #accueil div p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        #accueil div i {
+            padding: 0 0 0 10px;
+            font-size: 25px;
+        }
+        #accueil div {
+            padding: 0;
+            width: 100%;
+        }
+        #signup {
+            padding: 0;
+            margin: 0;
+        }
+        .register {
+            padding: 5px 0 0 0;
+        }
+        .register input {
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        .btn {
+            margin-top: 0;
+            font-size: 15px;
+            padding: 3px;
+        }
+        #title h3 {
+            font-size: 2rem;
+            padding: 20px 0 5px 0;
+        }
     }
 </style>

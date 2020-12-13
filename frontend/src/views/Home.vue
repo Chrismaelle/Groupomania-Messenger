@@ -232,6 +232,7 @@ export default {
         align-items: center;
         justify-content: space-around;
         margin: 30px 0;
+        padding-bottom: 30px;
     }
     .delete-post {
         text-align: end;
@@ -244,11 +245,11 @@ export default {
     }
     .last-comment  {
         display: flex;
-
     }
     #last-comment {
-        border: dashed 1px;
         width: 90%;
         margin: 0 0 20px 28px;
+        background-color: #b1a7a6;
+        border-radius: 10px;
     }
 </style>

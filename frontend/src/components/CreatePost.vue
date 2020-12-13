@@ -74,6 +74,7 @@ export default {
                         )
                         .then(response => {
                             console.log(response);
+                            this.$router.go('/')
                             })
                         .catch(error => {
                             console.log(error)
@@ -91,6 +92,7 @@ export default {
                         )
                         .then(response => {
                             console.log(response);
+                            this.$router.go('/')
                             })
                         .catch(error => {
                             console.log(error)
@@ -134,11 +136,12 @@ export default {
     #createPost {
         text-align: center;
         padding: 20px 0;
-        border: solid 0.5px;
+        background-color: #ffffff;
+        box-shadow: 5px 5px 5px #b1a7a6;
         border-radius: 10px;
         width: 600px;
         height: 200px;
-        margin-left: 700px;
+        margin-left: 650px;
     }
     .text {
         width: 220px;

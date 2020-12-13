@@ -67,10 +67,11 @@ export default {
 <style>
     #post {
         margin-top: 50px;
-        border: solid 1px;
         border-radius: 10px;
+        box-shadow: 5px 5px 5px #b1a7a6;
         width: 600px;
-        margin-left: 700px;
+        margin-left: 650px;
+        background-color: #ffffff;
     }
     .user {
         display: flex;
