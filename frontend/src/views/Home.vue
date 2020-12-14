@@ -11,7 +11,7 @@
                 <div id="last-comment">
                     <div class="last-comment" v-for="comment in post.Comments" v-bind:key="comment.id">
                         <img class="photo-user-comment" :src="comment.User.photo">
-                        <div>
+                        <div class="user-comment">
                             <p class="name">{{ comment.User.firstName }} {{ comment.User.lastName }}</p>
                             <p class="comment-content">{{ comment.content }}</p>
                         <div class="delete" v-on:click="deleteComment(post.id, comment.id, user.id, comment.user_id)" v-if="comment.user_id == user.id || user.permission == 1">
@@ -251,5 +251,45 @@ export default {
         margin: 0 0 20px 28px;
         background-color: #b1a7a6;
         border-radius: 10px;
+    }
+    #last-comment {
+        background-color: #ffffff;
+    }
+    @media screen and (max-width: 568px) {
+        .delete {
+            padding: 0 7px 5px 0;
+        }
+        .user-comment {
+            width: 100%;
+        }
+        .name {
+            font-size: 1rem;
+            padding: 7px 0 0 0;
+        }
+        .comment-content {
+            width: 100%;
+        }
+        .text-comment {
+            width: 220px;
+            margin: 10px 0 0 0;
+        }
+        .photo-user-comment {
+            margin: 5px 7px 0 5px;
+        }
+        #last-comment {
+            margin: 10px 7px 0 7px;
+            width: 95%;
+        }
+        .last-comment {
+            margin-bottom: 15px;
+            border-bottom: #e2e2e2 solid;
+        }
+        .comment {
+            display: flex;
+            flex-direction: column;
+        }
+        .btn-post {
+            margin: 15px 0 0 0;
+        }
     }
 </style>

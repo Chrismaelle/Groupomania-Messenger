@@ -68,10 +68,10 @@ export default {
     #post {
         margin-top: 50px;
         border-radius: 10px;
-        box-shadow: 5px 5px 5px #b1a7a6;
+        box-shadow: 3px 3px 3px 3px #b1a7a6;
         width: 600px;
         margin-left: 650px;
-        background-color: #ffffff;
+        background-color: #F6F6F6;
     }
     .user {
         display: flex;
@@ -100,6 +100,7 @@ export default {
     .content p {
         font-size: 1.3rem;
         margin-bottom: 20px;
+        overflow-wrap: break-word;
     }
     .content img {
         box-shadow: 5px 5px 5px rgb(212, 212, 212);
@@ -108,5 +109,28 @@ export default {
         width: 100%;
         height: 100%;
     }
+    @media screen and (max-width: 568px) {
+        #post {
+            margin: 0 15px 30px 15px;
+            padding: 0;
+            width: 90%;
+        }
+        .user h1 {
+            font-size: 1rem;
+            padding: 0;
+        }
+        .user img {
+            width: 40px;
+            height: 40px;
+            margin: 0 10px 0 20px;
+        }
+        .user {
+            padding-top: 10px;
+            align-items: center;
 
+        }
+        .content {
+            margin: 0;
+        }
+    }
 </style>

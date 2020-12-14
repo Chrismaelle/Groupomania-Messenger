@@ -137,7 +137,7 @@ export default {
         text-align: center;
         padding: 20px 0;
         background-color: #ffffff;
-        box-shadow: 5px 5px 5px #b1a7a6;
+        box-shadow: 3px 3px 3px 3px #b1a7a6;
         border-radius: 10px;
         width: 600px;
         height: 200px;
@@ -161,5 +161,36 @@ export default {
     }
     .publier {
         padding: 0 5px 3px 5px;
+    }
+    @media screen and (max-width: 568px) {
+        #createPost {
+            margin: 0 15px 30px 15px;
+            padding: 0 0 15px 0;
+            height: 100%;
+            width: 90%;
+            background-color: #F9F9F9;
+            
+        }
+        .nom {
+            font-size: 1rem;
+        }
+        #user {
+            margin: 0;
+        }
+        #form {
+            display: flex;
+            flex-direction: column;
+        }
+        #user img {
+            width: 40px;
+            height: 40px;
+            margin-top: 7px;
+        }
+        .text {
+            margin: 0;
+        }
+        .upload {
+            margin: 0;
+        }
     }
 </style>

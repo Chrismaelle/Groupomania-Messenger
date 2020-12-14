@@ -6,14 +6,11 @@
         <div id="nav-info">
             <div v-if="$route.path==='/login' || $route.path==='/signup' ? false : true" v-bind="account">
                 <div role="link" aria-label="Accès aux informations utilisateurs" class="navbar-user">
-                    <img v-bind:src="userPhoto">
-                    <div>
-                        <ul id="list">
-                            <li><router-link to="/account" class="menu">Informations</router-link></li>
-                            <li v-if="admin == 1"><router-link to="/allusersadmin" class="menu">Tous les utilisateurs</router-link></li>
-                            <li><a href="#" class="logOut menu" @click="logOut()">Se déconnecter</a></li>
-                      </ul>
-                  </div>
+                    <ul id="list">
+                        <li><router-link to="/account" class="menu">Informations</router-link></li>
+                        <li v-if="admin == 1"><router-link to="/allusersadmin" class="menu">Tous les utilisateurs</router-link></li>
+                        <li><a href="#" class="logOut menu" @click="logOut()">Se déconnecter</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -103,50 +100,48 @@ export default {
     }
     #nav {
         text-align: center;
+        margin-bottom: 40px;
     }
     #logo-groupomania {
         max-width: 350px;
         max-height: 200px;
         width: 100%;
         height: 100%;
-        margin-left: 50px;
-    }
-    .navbar-user img {
-        max-width: 40px;
-        max-height: 40px;
-        height: 100%;
-        width: 100%;
-        border-radius: 50px;
-        box-shadow: 2px 2px 2px #FDD3D3;
-        margin: 50px 70px 0 0;
     }
     .navbar-user {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
+        height: 100px;
         background-image: url(../assets/images/fond.jpg);
-        background-repeat: no-repeat;
-        height: 300px;
+        padding: 0 20px;
+        color: #ffffff;
+
     }
     .menu {
+        color: #ffffff;
         text-decoration: none;
-        color: white;
-        margin-right: 35px;
+        padding: 0 10px;
+        line-height: 100px;
     }
     #list {
         display: flex;
-        flex-direction: column;
-        line-height: 50px;
+        flex-direction: row;
+        list-style-type: none;
+        justify-content: center;
     }
-    #list li {
-        list-style: none;
-    }
-    .logo {
-        background-color: white;
-    } 
     @media screen and (max-width: 568px) {
         #logo-groupomania {
             margin: 0px;
+        }
+        .navbar-user {
+            height: 40px;
+            background-color: #FD2D01;
+        }
+        .menu {
+            color: #ffffff;
+            font-size: 0.6rem;
+            line-height: 40px;
+        }
+        #list li {
+            height: 50px;
         }
     }
 </style>

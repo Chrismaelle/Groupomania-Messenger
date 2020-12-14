@@ -196,4 +196,16 @@ export default {
       border-radius: 7px;
       border: solid 1px;
     }
+    @media screen and (max-width: 568px) {
+      .coordonees {
+          margin: 0 0 15px 0;
+      }
+      #img-profile {
+          flex-direction: column;
+        
+      }
+      .fichier {
+          margin: 5px 0 20px 20px;
+      }
+    }
 </style>
