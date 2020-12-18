@@ -112,9 +112,8 @@ export default {
 
 <style>
     .all-user-items {
-        background-color: #F9F9F9;
+        background-color: #c7c7c7;
         border-radius: 10px;
-        box-shadow: 3px 3px 3px 3px #b1a7a6;;
         width: 90%;
         margin: 30px 15px 15px 730px;
         width: 450px;
@@ -138,9 +137,8 @@ export default {
             margin: 0 10px;
         }
         .all-user-items {
-            background-color: #F9F9F9;
+            background-color:#c7c7c7;
             border-radius: 10px;
-            box-shadow: 3px 3px 3px 3px #b1a7a6;;
             width: 90%;
             margin: 15px;
         }
