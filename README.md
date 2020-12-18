@@ -20,7 +20,7 @@ Attention si vous souhaitez modifier l'utilisateur, pensez à le modifier dans l
 
         Démarrage de l'application backend
 
-À la racine du dossier api, faites un node server ou nodemon server (node recquis pour cette aplication)
+À la racine du dossier backend, faites un node server ou nodemon server (node recquis pour cette aplication)
 
 Vous pouvez utiliser l'application.
 
