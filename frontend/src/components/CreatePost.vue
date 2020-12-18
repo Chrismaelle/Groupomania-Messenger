@@ -136,8 +136,7 @@ export default {
     #createPost {
         text-align: center;
         padding: 20px 0;
-        background-color: #ffffff;
-        box-shadow: 3px 3px 3px 3px #b1a7a6;
+        background-color: #c7c7c7;
         border-radius: 10px;
         width: 600px;
         height: 200px;
@@ -168,7 +167,7 @@ export default {
             padding: 0 0 15px 0;
             height: 100%;
             width: 90%;
-            background-color: #F9F9F9;
+            background-color: #c7c7c7;
             
         }
         .nom {

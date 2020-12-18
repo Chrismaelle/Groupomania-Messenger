@@ -8,15 +8,18 @@
                 <div class="delete-post" v-on:click="deletePost(post.id)" v-if="post.user_id == user.id || user.permission == 1">
                     <i class="fas fa-trash-restore"></i>
                 </div>
-                <div id="last-comment">
-                    <div class="last-comment" v-for="comment in post.Comments" v-bind:key="comment.id">
-                        <img class="photo-user-comment" :src="comment.User.photo">
-                        <div class="user-comment">
-                            <p class="name">{{ comment.User.firstName }} {{ comment.User.lastName }}</p>
-                            <p class="comment-content">{{ comment.content }}</p>
-                        <div class="delete" v-on:click="deleteComment(post.id, comment.id, user.id, comment.user_id)" v-if="comment.user_id == user.id || user.permission == 1">
-                        <i class="fas fa-trash-alt"></i>
-                        </div>
+                <div class="commentaire">
+                    <button  v-on:click="showComments = showComments ? false : true">Commentaires</button>
+                </div>
+                    <div id="last-comment" v-if="showComments">
+                        <div class="last-comment" v-for="comment in post.Comments" v-bind:key="comment.id">
+                            <img class="photo-user-comment" :src="comment.User.photo">
+                            <div class="user-comment">
+                                <p class="name">{{ comment.User.firstName }} {{ comment.User.lastName }}</p>
+                                <p class="comment-content">{{ comment.content }}</p>
+                            <div class="delete" v-on:click="deleteComment(post.id, comment.id, user.id, comment.user_id)" v-if="comment.user_id == user.id || user.permission == 1">
+                                <i class="fas fa-trash-alt"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -63,6 +66,10 @@ export default {
                 attachments: "",
                 Comments: []
             },
+            postContent: {
+                content: null,
+                attachments: null,
+            },
             comment: {
                 content: '',
                 user_id: ''
@@ -72,7 +79,8 @@ export default {
             },
             user: {
                 photo: ''
-            }
+            },
+            showComments: false
         }
     },
     created() {
@@ -194,6 +202,9 @@ export default {
 </script>
 
 <style>
+    .commentaire {
+        text-align: center;
+    }
     .comment-zone {
         text-align: center;
         display: flex;

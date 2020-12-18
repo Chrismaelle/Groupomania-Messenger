@@ -86,22 +86,6 @@ exports.getOnePost = (req, res, next) => {
 };
 
 
-// PUT
-exports.modifyPost = (req, res, next) => {
-
-    const Posts = db.Posts;
-
-    Posts.update({
-        content: req.body.content,
-        attachments: req.body.attachments,
-        comments: req.body.comments},
-        {where: { id: req.params.id }
-    })
-    .then(() => res.status(200).json({ message: 'Posts mis à jour !'}))
-    .catch(error => res.status(500).json( {error }))
-};
-
-
 // DELETE
 exports.deletePost = (req, res, next) => {
 

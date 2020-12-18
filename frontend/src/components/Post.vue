@@ -68,10 +68,9 @@ export default {
     #post {
         margin-top: 50px;
         border-radius: 10px;
-        box-shadow: 3px 3px 3px 3px #b1a7a6;
         width: 600px;
         margin-left: 650px;
-        background-color: #F6F6F6;
+        background-color: #c7c7c7;
     }
     .user {
         display: flex;

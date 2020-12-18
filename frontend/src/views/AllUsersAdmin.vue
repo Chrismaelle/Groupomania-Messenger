@@ -1,24 +1,12 @@
 <template>
     <div id="all-users">
-        <h1 class="title">
-            Gestion des utilisateurs 
-            <br>par les admins
-        </h1>
-        <p class="subtitle">Vous pouvez gérer la permission des utilisateurs en changeant le false à true et en mettant à jour. 
-            <span class="alert"><br>Attention !</span> Une fois mis à jour vous n’aurez plus accès à l’utilisateur car il sera admin à son tour.
-            <br>Vous pouvez aussi supprimer un utilisateur.
-        </p>
+        <h1 class="title">Gestion des utilisateurs</h1>
+        <p>Vous pouvez modifier la permission des utilisateurs en changeant le false à true puis en mettant à jour.</p>
+        <p>Attention ! Une fois mis à jour vous n’aurez plus accès à l’utilisateur car il sera admin à son tour.</p>
+        <p>Vous pouvez aussi supprimer un utilisateur.</p> 
         <div class="all-user-items">
-            <UserItem 
-            v-for="user in allUsers"
-            :photo="user.photo"
-            :firstName="user.firstName"
-            :lastName="user.lastName"
-            :email="user.email"
-            v-on:user-deleted="deleteUser(user.id)"
-            v-on:user-updated="updateUser(user.id, user)"
-            :key="user.id"
-            >
+            <UserItem v-for="user in allUsers" :photo="user.photo" :firstName="user.firstName" :lastName="user.lastName" :email="user.email"
+            v-on:user-deleted="deleteUser(user.id)" v-on:user-updated="updateUser(user.id, user)" :key="user.id">
             <template v-slot:Permission>
                 <select name="permission" id="permission-select" v-model.number="user.permission">
                     <option v-for="option in options" v-bind:key="option.value">
@@ -121,3 +109,44 @@ export default {
     }
 }
 </script>
+
+<style>
+    .all-user-items {
+        background-color: #F9F9F9;
+        border-radius: 10px;
+        box-shadow: 3px 3px 3px 3px #b1a7a6;;
+        width: 90%;
+        margin: 30px 15px 15px 730px;
+        width: 450px;
+    }
+    .title {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    #all-users p {
+        text-align: center;
+        margin: 0 10px;
+    }
+    @media screen and (max-width: 568px) {
+        .title {
+        text-align: center;
+        font-size: 1.7rem;
+        margin-bottom: 20px;
+        }
+        #all-users p {
+            text-align: justify;
+            margin: 0 10px;
+        }
+        .all-user-items {
+            background-color: #F9F9F9;
+            border-radius: 10px;
+            box-shadow: 3px 3px 3px 3px #b1a7a6;;
+            width: 90%;
+            margin: 15px;
+        }
+        #permission-select {
+            font-size: 15px;
+        }
+    }
+    
+</style>
