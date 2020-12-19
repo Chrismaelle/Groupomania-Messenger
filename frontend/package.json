@@ -14,7 +14,8 @@
     "vue-confirm-dialog": "^1.0.2",
     "vue-cookies": "^1.7.4",
     "vue-moment": "^4.1.0",
-    "vue-router": "^3.4.9"
+    "vue-router": "^3.4.9",
+    "wcag-validator": "^5.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

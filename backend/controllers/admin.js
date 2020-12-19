@@ -1,7 +1,6 @@
 const db = require('../models/index.js');
 
 
-
 // GET 
 exports.getAllUsersAdmin = (req, res, next) => {
     const Users = db.Users;
