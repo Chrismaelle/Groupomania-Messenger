@@ -1,9 +1,9 @@
 **_Environnement_**
 
-Backend
+Backend :
 Ce projet est développé avec NodeJS, Express, Sequelize et Mysql2
 
-Frontend
+Frontend :
 Ce projet est développé avec VueJS
 
 **_Prérequis_**
